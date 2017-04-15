@@ -5,13 +5,7 @@ angular.module('video-player', [])
     return {
       scope: {
       },
-      restrict: 'E',
-      template: `<div ng-controller="appCtrl">
-                    Video-Player App
-                  </div>
-                  <div>
-                    <videoList></videoList>
-                  </div>`,
+      templateUrl: 'src/templates/app.html',
       controllerAs:'ctrl',
       bindToController: true,
       controller: 'appCtrl'
@@ -19,10 +13,10 @@ angular.module('video-player', [])
   })
 
   .controller('appCtrl', function() {
-    this.videos = [];
+    this.videos = window.exampleVideoData;
     this.selectVideo = function() {};
     this.searchResults = function() {};
-    this.currentVideo = {};
+    this.currentVideo = window.exampleVideoData[0];
   })
 
 
