@@ -3,22 +3,18 @@ angular.module('video-player')
   return {
     scope: {
       videos: '<',
-      onClick: '<'
+      selectVideo: '<',
+      currentVideo: '='
     },
     templateUrl: 'src/templates/videoList.html',
-    // template: `
-    // <ul class="video-list">
-    //   <video-list-entry 
-    //   ng-repeat="video in ctrl.videos track by $index">
-    //   <h5><em>videoListEntry</em>{{video}}</h5></video-list-entry>
-    // </ul>`,
     controllerAs:'ctrl',
     bindToController: true,
-    controller: 'videoListCtrl'
-  }
-})
+    controller: function() {
 
-.controller('videoListCtrl', function() {
-  // this.videos = window.exampleVideoData;
-  // this.onClick = function() {};
+      this.onClick = (video) => {
+        this.selectVideo(video);
+      };
+
+    }
+  }
 })

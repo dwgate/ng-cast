@@ -1,6 +1,6 @@
 angular.module('video-player')
 
-.directive('videoPlayer', function() {
+.directive('videoPlayer', [ '$sce', function($sce) {
   return {
     scope: {
       video: '<',
@@ -8,11 +8,26 @@ angular.module('video-player')
     templateUrl: 'src/templates/videoPlayer.html',
     controllerAs:'ctrl',
     bindToController: true,
-    controller: 'videoPlayerCtrl'
+    controller: function(){
+      this.renderUrl = function(videoId) { 
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + videoId);
+      };
+      this.check = function() {
+        return !!this.video;
+      };
+    }
   }
-})
-.controller('videoPlayerCtrl', function() {
+}])
+
+// .controller('mainCtrl', ['$sce', function($sce) {
+//   this.renderUrl = function(videoId) { 
+//     return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + videoId);
+//   };
+
+// }])
+
+// .controller('videoPlayerCtrl', function() {
   // this.video = {};
   // this.src = "https://www.youtube.com/embed/";
-})
+// })
 

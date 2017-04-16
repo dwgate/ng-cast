@@ -8,37 +8,43 @@ angular.module('video-player', [])
       templateUrl: 'src/templates/app.html',
       controllerAs:'ctrl',
       bindToController: true,
-      controller: 'appCtrl'
+      controller: 
+      function() {
+        this.videos = window.exampleVideoData;
+
+        this.selectVideo = function(video) {
+          this.currentVideo = video;
+        };
+
+        this.searchResults = function(query) {
+          console.log(youTube);
+        };
+
+        this.currentVideo = window.exampleVideoData[0];
+        this.result = (data) => { this.searchResults(data) };
+
+
+
+      }
     }
   })
 
-  .controller('appCtrl', function() {
-    this.videos = window.exampleVideoData;
-    this.selectVideo = function() {};
-    this.searchResults = function() {};
-    this.currentVideo = window.exampleVideoData[0];
-  })
+ 
 
+  // .controller('appCtrl', function(youTube) {
 
-// controllerAs: 'props',
-// bindToController: true,
-// controller: function() {
-//   this.selectVideo = function() {};
-//   this.searchResults =function() {};
-//   this.currentVideo = {};
+  //   this.searchService = youTube;
+  //   this.videos = window.exampleVideoData;
 
+  //   this.selectVideo = function(video) {
+  //     this.currentVideo = video;
+  //   };
 
+  //   this.searchResults = function(query) {
+  //     console.log(youTube);
+  //   };
 
+  //   this.currentVideo = window.exampleVideoData[0];
+  //   this.result = (data) => { this.searchResults(data) };
 
-//angular.module('docsSimpleDirective', [])
-// .controller('Controller', ['$scope', function($scope) {
-//   $scope.customer = {
-//     name: 'Naomi',
-//     address: '1600 Amphitheatre'
-//   };
-// }])
-// .directive('myCustomer', function() {
-//   return {
-//     template: 'Name: {{customer.name}} Address: {{customer.address}}'
-//   };
-// });
+  // })
